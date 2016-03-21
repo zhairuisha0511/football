@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+		<meta content="telephone=no" name="format-detection" />
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>足球圈子-首页</title>
+		<link rel="stylesheet" type="text/css" href="css/iconfont.css" />
+		<link rel="stylesheet" href="css/reset.css" />
+		<title></title>
+		<style type="text/css">
+			html {
+				height: 100%;
+				background: #ccc;
+			}
+			body {
+				width: 100%;
+				
+				max-width: 640px;
+				margin: 0 auto;
+				height: 100%;
+				background: #ccc;
+				display: -webkit-box;
+				-webkit-box-orient: vertical;
+			}
+			.left {
+				float: left;
+			}
+			header {
+				width: 100%;
+				height: 37px;
+				text-align: center;
+				background: #0f91c5;
+				font-size: 17px;
+				line-height: 37px;
+				color: #fff;
+				overflow: hidden;
+			}
+			.main-1 {
+				height: 70px;
+			}
+			.pika {
+				width: 47px;
+				height: 46px;
+				border-radius: 50%;
+				border: 1px solid #ccc;
+				overflow: hidden;
+				margin: 10px 0 0 10px;
+			}
+			.pika img {
+				width: 47px;
+			}
+			.Op {
+				margin-top: 15px;
+				margin-left: 10px;
+				width: 56%;
+			}
+			.Op .p1 {
+				font-size: 14px;
+				height: 26px;
+			}
+			.Op .p2 {
+				font-size: 12px;
+			}
+			.main-2 {
+				height: 70px;
+				background: #fff;
+			}
+			.nav {
+				width: 100%;
+				height: 33px;
+				line-height: 33px;
+				font-size: 12px;
+				display: -webkit-box;
+				background: #fff;
+			}
+			body .nav .search {
+				display: inline-block;
+				height: 23px;
+				width: 45px;
+				background: #0f91c5;
+				border: 1px solid #ccc;
+				border-radius: 3px;
+				text-align: center;
+				color: #fff;
+				line-height: 23px;
+				margin-left: 5px;
+			}
+			
+			.nav input {
+				display: inline-block;
+				width: 257px;
+				height: 23px;
+				border: 1px solid #ccc;
+				border-radius: 3px;
+			}
+			
+			#wrapper {
+				-webkit-box-flex: 1;
+				background: #fff;
+				margin: 5px auto;
+			}
+			
+			.main-1 {
+				border-bottom: 1px solid #ccc;
+			}
+			footer {
+				height: 40px;
+				font-size: 12px;
+				width: 100%;
+				background: #fff;
+			}
+			footer ul {
+				height: 39px;
+				border-top: 1px solid #ccc;
+				position: relative;
+			}
+			footer ul li {
+				width: 20%;
+				float: left;
+				height: 39px;
+				text-align: center;
+			}
+			footer ul li i {
+				color: #666;
+			}
+			footer ul li a {
+				width: 24px;
+				display: block;
+				margin: 0 auto;
+				height: 20px;
+				color: #666;
+			}
+			footer ul li:nth-child(1) i {
+				color: #00f;
+			}
+			
+			footer ul li:nth-child(1) a {
+				color: #00f;
+			}
+			
+			footer ul li:nth-child(3) a {
+				display: inline-block;
+				width: 32px;
+				height: 32px;
+				margin: -5px auto 0;
+				background: url(images/iconfont-xiangji.png) no-repeat;
+				background-size: 32px 32px;
+			}
+			.p2{
+				display: inline-block;
+				width: 149px;
+			}
+			.btn{
+				
+				/*margin-left: 45px;*/
+				display: inline-block;
+				font-size: 12px;
+				width: 30px;
+				height: 23px;
+				text-align: center;
+				line-height: 23px;
+				background:  #0f91c5;
+				color: #fff;
+			}
+			
+		</style>
+		<script type="text/javascript" src="js/jquery-1.11.3.js"></script>
+		<script type="text/javascript" src="js/touch-0.2.14.js"></script>
+		<script type="text/javascript" src="js/iscroll.js"></script>
+	</head>
+
+	<body>
+		<header>
+			发现
+		</header>
+		<div class="nav">
+			<input type="text" placeholder="请输入昵称" class="Oinp" /><span class="search">搜索</span>
+		</div>
+		<div class="mainDiv" id="wrapper">
+			<div class="main0" id="scroller">
+			</div>
+			
+		</div>
+		<footer>
+			<ul>
+				<li><i class="iconfont">&#xe604;</i>
+					<a>首页</a>
+				</li>
+				<li><i class="iconfont">&#xe605;</i>
+					<a>发现</a>
+				</li>
+				<li>
+					<a></a>
+				</li>
+				<li><i class="iconfont">&#xe6bc;</i>
+					<a>我的</a>
+				</li>
+				<li><i class="iconfont">&#xe638;</i>
+					<a>退出</a>
+				</li>
+			</ul>
+		</footer>
+	</body>
+	<script type="text/javascript">
+		var iftop=0;
+		var ifbot=0;
+		var j=3;
+	 	var myscroll = new iScroll("wrapper",{
+			 	onScrollMove:function(){
+		           if (this.y >60)
+		            {
+		            	iftop=1;
+		            	ifBot=0;
+		            } 
+		           else if (this.y < (this.maxScrollY-60)) 
+		            {
+		            	iftop=0;
+		            	ifBot=1;
+		            }
+		            else
+		            {
+		            	iftop=0;
+		            	ifBot=0;
+		            }
+			 	},
+			 	 onScrollEnd:function(){
+			 		 if (iftop==1) 
+		            {
+		            		$.ajax({
+				url: "http://localhost:8080/Proxy/FootBall/user/json/queryall.do",
+				data: {
+					"loginsuserid": localStorage.getItem("name"),
+					"page.pageNo": j-1
+				},
+				success: function(d) {
+					var da = JSON.parse(d).data.userlist;
+					for (var i = 0; i < da.length; i++) {
+						var name = da[i].nickname;
+						var pic = da[i].avatarpath;
+						var zhu = da[i].signnature;
+						var Oid=da[i].id;
+						var bigDiv = $("<div>").addClass("main-1").prependTo($(".main0"));
+						var oneDiv = $("<div class='pika left'><img src='http://101.200.173.217:8080/FootBall/" + pic + "'/></div>").appendTo(bigDiv);
+						var twoDiv = $("<div>").addClass("Op left").appendTo(bigDiv);
+						var p1 = $("<p class='p1'>" + name + "</p>").appendTo(twoDiv);
+						var p2 = $("<p class='p2'>" + zhu + "</p>").appendTo(twoDiv);
+						var a=$("<span class='btn' data1='"+Oid+"'>关注</span>").appendTo(twoDiv)
+					}
+					 myscroll.refresh();
+					 j--;
+					 if(j<=0){
+					 	alert("最后一页了哦")
+					 }else{
+					 	
+					 }
+					 alert(j)
+				}
+				
+			})
+		            } 
+		            else if (ifBot==1)
+		            {
+		            	ajx(j+1);
+		            	j++;
+		            }
+			 	}
+			 });
+		
+		function ajx(a){
+			$.ajax({
+				url: "http://localhost:8080/Proxy/FootBall/user/json/queryall.do",
+				data: {
+					"loginsuserid": localStorage.getItem("name"),
+					"page.pageNo": a
+				},
+				success: function(d) {
+					var da = JSON.parse(d).data.userlist;
+					console.log(JSON.parse(d))
+					for (var i = 0; i < da.length; i++) {
+						var name = da[i].nickname;
+						var pic = da[i].avatarpath;
+						var zhu = da[i].signnature;
+						var Oid=da[i].id;
+						var bigDiv = $("<div>").addClass("main-1").appendTo($(".main0"));
+						var oneDiv = $("<div class='pika left'><img src='http://101.200.173.217:8080/FootBall/" + pic + "'/></div>").appendTo(bigDiv);
+						var twoDiv = $("<div>").addClass("Op left").appendTo(bigDiv);
+						var p1 = $("<p class='p1'>" + name + "</p>").appendTo(twoDiv);
+						var p2 = $("<p class='p2'>" + zhu + "</p>").appendTo(twoDiv);
+						var a=$("<sapn class='btn' data1='"+Oid+"'>关注</span>").appendTo(twoDiv)
+					}
+					 myscroll.refresh();
+				}
+				
+			})
+		}
+					
+		$(".search").on("tap", function(e) {
+			e.preventDefault();
+			ajx(j);
+		})
+		$(".main0").delegate(".btn","click",function(){
+			var ss=$(this)
+			$.ajax({
+			url:"http://localhost:8080/Proxy/FootBall/attention/json/follow.do",
+			data:{"loginsuserid":localStorage.getItem("name"),"tagetuserid":$(this).attr("data1")},
+			success:function(d){
+				var da=JSON.parse(d).ecode;
+				if(da==500){
+					ss.css("background","#ccc").html("取消")
+				}
+			}
+		})	
+		})
+
+	</script>
+
+</html>

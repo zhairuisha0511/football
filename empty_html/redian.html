@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+	<head>
+		<meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+		<meta content="telephone=no" name="format-detection" />
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>足球圈子-首页</title>
+		<link rel="stylesheet" href="css/reset.css" />
+		<link rel="stylesheet" type="text/css" href="css/index.css" />
+		<link rel="stylesheet" type="text/css" href="css/iconfont.css" />
+		<link rel="stylesheet" type="text/css" href="css/swiper.min.css" />
+		<script type="text/javascript" src="js/jquery-1.11.3.js"></script>
+		<script type="text/javascript" src="js/touch-0.2.14.js"></script>
+		<script type="text/javascript" src="js/iscroll.js"></script>
+		<script type="text/javascript" src="js/swiper.min.js"></script>
+		<script type="text/javascript">
+			window.onload = loaded;
+				
+			function loaded() {
+				var myscroll, main2, main3;
+				myscroll = new iScroll("wrapper");
+				main2 = new iScroll("main2");
+				main3 = new iScroll("main3");
+				var football = document.getElementsByClassName("football")
+				touch.on(football, "touchstart", function(ev) {
+					ev.preventDefault();
+				})
+				touch.on(football, "tap", function() {
+					var index = $(this).index();
+					$(".football").eq(index).addClass("fone").siblings().removeClass("fone")
+					if(sessionStorage.getItem("key"+index)==""){
+						aj(index);
+					}else{
+						$(".Rmain").empty()
+						var da= JSON.parse(sessionStorage.getItem("key"+index)).data.tweetlist;
+						for (var i = 0; i < da.length; i++) {
+								var pic = da[i].defaultFileName;
+								var con = da[i].content;
+								var Odl = $("<dl>").appendTo($(".Rmain"))
+								var Odd = $("<dd>").appendTo(Odl);
+								var Opic = $("<img>").attr("src", "http://101.200.173.217:8080/FootBall/upload/files/20150715/" + pic).appendTo($(Odd));
+								var Ocon = $("<dt>").html(con).appendTo(Odl);
+								Opic[0].onload = function() {
+									$("#wrapper").height($(window).height()-$("body>header").height()-$(".nav").height()-$("body>footer").height());
+									$("#main2").height($(window).height()-$("body>header").height()-$(".nav").height()-$("body>footer").height());
+									$("#main3").height($(window).height()-$("body>header").height()-$(".nav").height()-$("body>footer").height());
+									myscroll.refresh();
+									main2.refresh();
+									main3.refresh();
+								}
+							}
+					}
+					
+					//sessionStorage.setItem("aj"+index,d)
+					mySwiper.slideTo(index, 100, false);
+					myscroll.refresh();
+					main2.refresh();
+					main3.refresh();
+				})
+
+				function aj(a) {
+					$(".Rmain").empty()
+									$.ajax({
+						url: "http://localhost:8080/Proxy/FootBall/tweet/json/query/hotspot.do",
+						data: {
+							"category": a+1
+						},
+						success: function(d) {
+							sessionStorage.setItem("key"+a,d)
+							var da = JSON.parse(d).data.tweetlist;
+							for (var i = 0; i < da.length; i++) {
+								var pic = da[i].defaultFileName;
+								var con = da[i].content;
+								var Odl = $("<dl>").appendTo($(".Rmain"))
+								var Odd = $("<dd>").appendTo(Odl);
+								var Opic = $("<img>").attr("src", "http://101.200.173.217:8080/FootBall/upload/files/20150715/" + pic).appendTo($(Odd));
+								var Ocon = $("<dt>").html(con).appendTo(Odl);
+								Opic[0].onload = function() {
+									$("#wrapper").height($(window).height()-$("body>header").height()-$(".nav").height()-$("body>footer").height());
+									$("#main2").height($(window).height()-$("body>header").height()-$(".nav").height()-$("body>footer").height());
+									$("#main3").height($(window).height()-$("body>header").height()-$(".nav").height()-$("body>footer").height());
+									myscroll.refresh();
+									main2.refresh();
+									main3.refresh();
+								}
+							}
+						}
+					})
+					
+					
+				}
+				aj(0);
+				var mySwiper = new Swiper('.swiper-container', {
+					direction: 'horizontal',
+					loop: false,
+					onSlideChangeStart: function(swiper) {
+						index = swiper.activeIndex;
+						$(".football").eq(index).addClass("fone").siblings().removeClass("fone")
+						if(sessionStorage.getItem("key"+index)==""){
+							//alert("1")
+						aj(index);
+					}else{
+						$(".Rmain").empty()
+						var da= JSON.parse(sessionStorage.getItem("key"+index)).data.tweetlist;
+						for (var i = 0; i < da.length; i++) {
+								var pic = da[i].defaultFileName;
+								var con = da[i].content;
+								var Odl = $("<dl>").appendTo($(".Rmain"))
+								var Odd = $("<dd>").appendTo(Odl);
+								var Opic = $("<img>").attr("src", "http://101.200.173.217:8080/FootBall/upload/files/20150715/" + pic).appendTo($(Odd));
+								var Ocon = $("<dt>").html(con).appendTo(Odl);
+								Opic[0].onload = function() {
+									$("#wrapper").height($(window).height()-$("body>header").height()-$(".nav").height()-$("body>footer").height());
+									$("#main2").height($(window).height()-$("body>header").height()-$(".nav").height()-$("body>footer").height());
+									$("#main3").height($(window).height()-$("body>header").height()-$(".nav").height()-$("body>footer").height());
+									myscroll.refresh();
+									main2.refresh();
+									main3.refresh();
+								}
+							}
+					}
+						//console.log($index)
+						myscroll.refresh();
+						main2.refresh();
+						main3.refresh();
+					}
+				})
+			}
+		</script>
+		<style type="text/css">
+			body {
+				display: -webkit-box;
+				-webkit-box-orient: vertical;
+			}
+			
+			header p span:first-child {
+				background: #57b2d7;
+				color: #fff;
+			}
+			
+			header p span:last-child {
+				background: #79c1df;
+				color: #57b2d7;
+			}
+			
+			.cont{
+				-webkit-box-flex: 1;
+				background: #fff;
+				margin: 4.5px auto;
+			}
+			.Rmain {
+				-webkit-column-count: 2;
+				-webkit-column-gap: 5px;
+			}
+			
+			dl {
+				border: 1px solid #ccc;
+				margin-top: 6px;
+			}
+			
+			dl img {
+				border-bottom: 1px solid #ccc;
+			}
+			
+			dt {
+				font-size: 14px;
+				line-height: 20px;
+				margin-left: 10px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header>
+			<p>
+				<span>热点</span><span>关注</span>
+			</p>
+		</header>
+		<div class="nav">
+			<span class="football fone" id="football">足球现场</span>
+			<span class="football">足球生活</span>
+			<span class="football">足球美女</span>
+		</div>
+		<div class="cont swiper-container">
+			<div class="one-deal swiper-wrapper">
+				<div class="swiper-slide">
+					<div id="wrapper" class="one">
+						<div class="Rmain" id="scroller">
+							
+						</div>
+					</div>
+				</div>
+				<div class="swiper-slide">
+					<div id="main2" class="one">
+						<div class="Rmain" id="scroller">
+							
+						</div>
+					</div>
+				</div>
+				<div class="swiper-slide">
+					<div id="main3" class="one" >
+						<div class="Rmain" id="scroller">
+							
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<footer style="background: #fff;">
+			<ul>
+				<li><i class="iconfont">&#xe604;</i>
+					<a>首页</a>
+				</li>
+				<li><i class="iconfont">&#xe605;</i>
+					<a>发现</a>
+				</li>
+				<li>
+					<a></a>
+				</li>
+				<li><i class="iconfont">&#xe6bc;</i>
+					<a>我的</a>
+				</li>
+				<li><i class="iconfont">&#xe638;</i>
+					<a>退出</a>
+				</li>
+			</ul>
+		</footer>
+	</body>
+
+</html>

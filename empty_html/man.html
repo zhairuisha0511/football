@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+			 <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+    <meta content="telephone=no" name="format-detection" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>足球圈子-首页</title>
+      <link rel="stylesheet" type="text/css" href="css/iconfont.css"/>
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" type="text/css" href="css/index.css"/>
+    
+		<title></title>
+		<style type="text/css">
+			.nav {
+				width: 100%;
+				font-size: 12px;
+				
+			}
+			body .nav .search{
+				display: inline-block;
+				height: 23px;
+				width: 33px;
+				background: #0f91c5;
+				border: 1px solid #ccc;
+				border-radius: 3px;
+				text-align: center;
+				color: #fff;
+				/*float: left;*/
+				line-height: 23px;
+				margin-left: 5px;
+			}
+			.nav input{
+				display: inline-block;
+				width: 257px;
+				height: 23px;
+				border: 1px solid #ccc;
+				border-radius: 3px;
+				/*float: left;*/
+				
+				
+			}
+			.nav1{
+				width: 100%;
+				height: 33px;
+				line-height: 33px;
+				font-size: 14px;
+				/*margin-top: 37px;*/
+				display: -webkit-box;
+				
+				
+				
+				background: #fff;
+			}
+			.nav1 .football{
+				display: block;
+				width: 56px;
+				-webkit-box-flex: 1;
+				border-bottom: 1px solid #ccc;
+				text-align: center;
+			}
+			.nav1 span:first-child{
+				border-bottom:2.5px solid #0f91c5; 
+			}
+			.man-main{
+				margin: 5px auto;-webkit-box-flex: 1;background: #fff;
+				overflow: hidden;
+			}
+		</style>
+		<script type="text/javascript" src="js/jquery-1.11.3.js"></script>
+		<script type="text/javascript" src="js/touch-0.2.14.js"></script>
+		<script type="text/javascript" src="js/iscroll.js"></script>
+	</head>
+	<body>
+		<header>
+			个人中心
+		</header>
+		<div class="nav">
+			<input type="text" placeholder="请输入昵称"/><span class="search" >搜索</span>
+		</div>
+		<div class="main-1" style="background: #fff;">
+			<div class="pika left"><img src="images/pi.jpg"/></div>
+			<div class="Op left">
+				<p class="yin">尹涛</p>
+				<p>我是小萌我怕谁</p>
+			</div>
+			<div class="Ospan left">
+				<span class="care">3275658</span>
+				<img src="images/zan.jpg" style="width: 12px;display: inline-block;" id="zan" />
+			</div>
+		</div>
+		
+		<div class="nav1">
+			<span class="football foot1">照片（1）</span>
+			<span class="football foot2">关注（3）</span>
+			<span class="football foot3">粉丝（5）</span>
+		</div>
+		
+		<div class="man-main" id="wrapper">
+			<div class="man-main0">
+				<img src="images/wanzi-2.jpg" style="width: 167px;"/>
+				<img src="images/wanzi-2.jpg" style="width: 167px;"/>
+				<img src="images/wanzi-2.jpg" style="width: 167px;"/>
+				<img src="images/wanzi-2.jpg" style="width: 167px;"/>
+			</div>
+		</div>
+		
+		<footer>
+			<ul>
+				<li><i class="iconfont">&#xe604;</i>
+					<a>首页</a>
+				</li>
+				<li><i class="iconfont">&#xe605;</i>
+					<a>发现</a>
+				</li>
+				<li>
+					<a></a>
+				</li>
+				<li><i class="iconfont">&#xe6bc;</i>
+					<a>我的</a>
+				</li>
+				<li><i class="iconfont">&#xe638;</i>
+					<a>退出</a>
+				</li>
+			</ul>
+		</footer>
+	</body>
+	<script type="text/javascript">
+	window.onload=function(){
+		var myscroll=new iScroll("wrapper");
+		myscroll.refresh();
+	}
+	
+	$(".foot2").on("tap",function(e){
+		e.preventDefault();
+		$.ajax({
+			url:"http://localhost:8080/Proxy/FootBall/attention/json/queryall/followed.do",
+			data:{"loginsuserid":localStorage.getItem("name")},
+			success:function(d){
+				var da=JSON.parse(d).data.userlist;
+				console.log(da)
+			}
+		})
+	})
+//		$("#zan").on("tap",function(e){
+//			e.preventDefault();
+//			$.ajax({
+//				url:"http://localhost:8080/Proxy/FootBall/like/json/add.do",
+//				data:{"userid":localStorage.getItem("name")},
+//				success:function(d){
+//					console.log(d)
+//				}
+//			})
+//		})
+	</script>
+</html>
+
